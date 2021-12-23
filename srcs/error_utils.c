@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 18:25:27 by sadjigui          #+#    #+#             */
-/*   Updated: 2021/12/23 17:17:42 by sadjigui         ###   ########.fr       */
+/*   Updated: 2021/12/23 17:39:38 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void	error_message_map(t_error *error)
 {
 	if (error->closed != 0)
 		ft_putstr_fd("Map is not closed\n", 2);
-	if (error->ex <= 0)
 	if (error->square != 0)
 		ft_putstr_fd("Map is not square\n", 2);
 	if (error->ex <= 0)
