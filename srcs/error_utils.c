@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 18:25:27 by sadjigui          #+#    #+#             */
-/*   Updated: 2021/12/23 17:39:38 by sadjigui         ###   ########.fr       */
+/*   Updated: 2021/12/23 18:21:57 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	check_f_n_l_line(char *line, t_error *error)
 			error->closed++;
 		i++;
 	}
+	if (ft_strlen(line) != error->size)
+		error->square++;
 }
 
 void	check_inner_line(char *line, t_error *error)
@@ -31,25 +33,21 @@ void	check_inner_line(char *line, t_error *error)
 
 	i = 0;
 	if (!(line[0] == '1'))
-		error->square++;
+		error->closed++;
 	printf("let's go = ");
 	while (line[i])
-	{
-		while (line[i] == '0' || line[i] == '1' || line[i] == '\n')
+    {
+        if (line[i] == 'E')
+            error->ex++;
+        else if (line[i] == 'P')
+            error->player++;
+        else if (line[i] == 'C')
+            error->collectible++;
+        else if (line[i] != '0' && line[i] != '1' && line[i] != '\n')
 			i++;
-		if (line[i] == 'E')
-			error->ex++;
-		else if (line[i] == 'P')
-			error->player++;
-		else if (line[i] == 'C')
-			error->collectible++;
-		else
-		{
-			printf("%c", line[i]);
-			error->full++;
-		}
-		i++;
 	}
+	if (!(line[i] == '1'))
+		error->closed++;
 	if (ft_strlen(line) != error->size)
 		error->square++;
 	printf("\n");

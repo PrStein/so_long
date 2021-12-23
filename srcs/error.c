@@ -27,8 +27,8 @@ void	isafile(char **av, t_error *error)
 
 	i = 0;
 	fd = open(av[1], O_RDONLY);
-	line = get_next_line(fd);
-	str = ft_strdup(line);
+	// line = get_next_line(fd);
+	str = NULL;
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		str = ft_strjoin(str, line);
