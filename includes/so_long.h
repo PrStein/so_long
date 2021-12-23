@@ -27,5 +27,6 @@ void	isafile(char **av, t_error *error);
 void	ft_init_error(t_error *error);
 void	check_inner_line(char *line, t_error *error);
 void	error_message_map(t_error *error);
+void	check_zero_one(char **split, t_error *error);
 
 #endif

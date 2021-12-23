@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 18:25:27 by sadjigui          #+#    #+#             */
-/*   Updated: 2021/12/21 23:53:53 by sadjigui         ###   ########.fr       */
+/*   Updated: 2021/12/23 17:17:42 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,28 +32,34 @@ void	check_inner_line(char *line, t_error *error)
 	i = 0;
 	if (!(line[0] == '1'))
 		error->square++;
+	printf("let's go = ");
 	while (line[i])
 	{
-		if (line[i] == '0' || line[i] == '1')
+		while (line[i] == '0' || line[i] == '1' || line[i] == '\n')
 			i++;
 		if (line[i] == 'E')
 			error->ex++;
-		if (line[i] == 'P')
+		else if (line[i] == 'P')
 			error->player++;
-		if (line[i] == 'C')
+		else if (line[i] == 'C')
 			error->collectible++;
 		else
+		{
+			printf("%c", line[i]);
 			error->full++;
+		}
 		i++;
 	}
-	if (line[i - 2] != '1')
-		error->square++;
 	if (ft_strlen(line) != error->size)
 		error->square++;
+	printf("\n");
 }
 
 void	error_message_map(t_error *error)
 {
+	if (error->closed != 0)
+		ft_putstr_fd("Map is not closed\n", 2);
+	if (error->ex <= 0)
 	if (error->square != 0)
 		ft_putstr_fd("Map is not square\n", 2);
 	if (error->ex <= 0)
@@ -66,5 +72,24 @@ void	error_message_map(t_error *error)
 		ft_putstr_fd("Missing player\n", 2);
 	if (error->full != 0)
 		ft_putstr_fd("Don't mess with the map boy\n", 2);
+	printf("full = %d\n", error->full);
+
+}
+
+void	check_zero_one(char **split, t_error *error)
+{
+	int i;
+
+	i = 0;
+	check_f_n_l_line(split[0], error);
+	i++;
+	while (split[i + 1])
+	{
+		check_inner_line(split[i], error);
+		i++;
+	}
+	check_f_n_l_line(split[i], error);
+	printf("--%d\n", error->closed);
+	printf("--%s\n", split[0]);
 
 }

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/21 15:13:02 by sadjigui          #+#    #+#             */
-/*   Updated: 2021/12/22 00:05:44 by sadjigui         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../includes/so_long.h"
 
 int	reverse_comp(char *s1, char *s2)
@@ -33,31 +21,27 @@ void	isafile(char **av, t_error *error)
 {
 	int fd;
 	char *line;
-	int test;
+	char *str;
+	char **split;
+	int i;
 
+	i = 0;
 	fd = open(av[1], O_RDONLY);
-	test = read(fd, line, 1);
-	printf("test = %d\n", test);
 	line = get_next_line(fd);
-
-	printf("%s", line);
-
-	error->size = ft_strlen(line);
-	check_f_n_l_line(line, error);
-	printf("\n%d\n", error->size);
-	printf("\n[%d]\n", error->closed);
-
+	str = ft_strdup(line);
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		check_inner_line(line, error);
-		printf("\n{%d}\n", error->square);
-		printf("%s", line);
+		str = ft_strjoin(str, line);
 		free(line);
 		line = NULL;
 	}
-	printf("%s\n", line);
+	split = ft_split(str, '\n');
 	free(line);
 	close(fd);
+	error->size = ft_strlen(split[0]);
+	while (split[i])
+		printf("-----%s\n", split[i++]);
+	check_zero_one(split, error);
 }
 
 int	check_map(char **av)
