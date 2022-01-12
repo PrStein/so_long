@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:03:47 by sadjigui          #+#    #+#             */
-/*   Updated: 2021/12/21 15:46:42 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/11 20:28:48 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	ft_error_arg(int ac)
 
 int	main(int ac, char **av)
 {
+	char	**map = NULL;
+
 	if (ac == 2)
 	{
-		if(check_map(av) == 1)
-		{
-			ft_putstr_fd("Error map\n", 2);
-		}
+		map = check_map(av);
+		ft_free(map);
 	}
 	if (ac != 2)
 		ft_error_arg(ac);

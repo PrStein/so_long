@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 18:25:27 by sadjigui          #+#    #+#             */
-/*   Updated: 2021/12/23 18:21:57 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/11 20:30:13 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	check_f_n_l_line(char *line, t_error *error)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i])
 	{
-		if (!(line[i] == '1' || line[i] == '\n'))
+		if (line[i] != '1' && line[i] != '\n')
 			error->closed++;
 		i++;
 	}
@@ -29,31 +29,33 @@ void	check_f_n_l_line(char *line, t_error *error)
 
 void	check_inner_line(char *line, t_error *error)
 {
-	int i;
+	int	i;
 
 	i = 0;
-	if (!(line[0] == '1'))
+	if (line[0] != '1')
 		error->closed++;
-	printf("let's go = ");
-	while (line[i])
-    {
-        if (line[i] == 'E')
-            error->ex++;
-        else if (line[i] == 'P')
-            error->player++;
-        else if (line[i] == 'C')
-            error->collectible++;
-        else if (line[i] != '0' && line[i] != '1' && line[i] != '\n')
+	while (line[i + 1])
+	{
+		if (line[i] == '0' && line[i] == '1' && line[i] == '\n')
 			i++;
+		if (line[i] == 'E')
+			error->ex++;
+		else if (line[i] == 'P')
+			error->player++;
+		else if (line[i] == 'C')
+			error->collectible++;
+		else if (line[i] != 'C' && line[i] != 'P'
+				&& line[i] != 'E' && line[i] != '0' && line[i] != '1')
+			error->full++;
+		i++;
 	}
-	if (!(line[i] == '1'))
+	if (line[i] != '1')
 		error->closed++;
 	if (ft_strlen(line) != error->size)
 		error->square++;
-	printf("\n");
 }
 
-void	error_message_map(t_error *error)
+void	error_message_map(t_error *error, char **map)
 {
 	if (error->closed != 0)
 		ft_putstr_fd("Map is not closed\n", 2);
@@ -69,13 +71,18 @@ void	error_message_map(t_error *error)
 		ft_putstr_fd("Missing player\n", 2);
 	if (error->full != 0)
 		ft_putstr_fd("Don't mess with the map boy\n", 2);
-	printf("full = %d\n", error->full);
-
+	if (error->closed != 0 || error->square != 0
+			|| error->ex <= 0 || error->collectible <= 0
+			|| error->player != 1 || error->full != 0)
+	{
+		ft_free(map);
+		exit(1);
+	}
 }
 
 void	check_zero_one(char **split, t_error *error)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	check_f_n_l_line(split[0], error);
@@ -86,7 +93,4 @@ void	check_zero_one(char **split, t_error *error)
 		i++;
 	}
 	check_f_n_l_line(split[i], error);
-	printf("--%d\n", error->closed);
-	printf("--%s\n", split[0]);
-
 }

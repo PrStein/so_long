@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/11 19:49:14 by sadjigui          #+#    #+#             */
+/*   Updated: 2022/01/11 20:27:49 by sadjigui         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/so_long.h"
 
 int	reverse_comp(char *s1, char *s2)
 {
-	int size_s1;
-	int size_s2;
+	int	size_s1;
+	int	size_s2;
 
 	size_s1 = ft_strlen(s1);
 	size_s2 = ft_strlen(s2);
@@ -17,42 +29,48 @@ int	reverse_comp(char *s1, char *s2)
 	return (0);
 }
 
-void	isafile(char **av, t_error *error)
+char	**isafile(char **av, t_error *error)
 {
-	int fd;
-	char *line;
-	char *str;
-	char **split;
-	int i;
+	int		fd;
+	char	*line;
+	char	*str;
+	char	*tmp;
+	char	**split;
 
-	i = 0;
 	fd = open(av[1], O_RDONLY);
-	// line = get_next_line(fd);
 	str = NULL;
+	tmp = NULL;
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		str = ft_strjoin(str, line);
+		tmp = ft_strjoin(str, line);
+		if (str != NULL)
+			free(str);
+		str = tmp;
 		free(line);
 		line = NULL;
 	}
 	split = ft_split(str, '\n');
 	free(line);
+	free(str);
 	close(fd);
 	error->size = ft_strlen(split[0]);
-	while (split[i])
-		printf("-----%s\n", split[i++]);
 	check_zero_one(split, error);
+	return (split);
 }
 
-int	check_map(char **av)
+char	**check_map(char **av)
 {
-	t_error error;
+	t_error	error;
+	char	**map;
 
+	map = NULL;
 	if (reverse_comp(av[1], ".ber"))
-		return (1);
+	{
+		ft_putstr_fd("Error map", 2);
+		exit(1);
+	}
 	ft_init_error(&error);
-	isafile(av, &error);
-	error_message_map(&error);
-
-	return (0);
+	map = isafile(av, &error);
+	error_message_map(&error, map);
+	return (map);
 }

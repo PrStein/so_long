@@ -2,7 +2,7 @@ NAME = so_long
 
 CC = clang
 
-# FLAGS    = -Wall -Wextra -Werror -g
+FLAGS    = -Wall -Wextra -Werror -g
 
 DEL = /bin/rm -f
 
