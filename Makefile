@@ -12,6 +12,8 @@ SRCS =	./srcs/so_long.c\
 		./gnl/get_next_line_utils.c\
 		./srcs/init_struct.c\
 		./srcs/error_utils.c\
+		./srcs/utils.c\
+		./srcs/exit.c\
 
 SRCS_O    = ${SRCS:.c=.o}
 
@@ -24,7 +26,7 @@ LIBC    = ar -rcs
 
 $(NAME): ${SRCS_O}
 			make bonus -C ./libft/
-		 $(CC) $(FLAGS) $(SRCS_O) -o $(NAME) -L ./libft/ -lft
+		 $(CC) $(FLAGS) $(SRCS_O) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) -L ./libft/ -lft
 
 fclean: clean
 		$(DEL) $(NAME)
