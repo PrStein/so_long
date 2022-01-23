@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:34:40 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/15 20:35:09 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/23 21:57:40 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	free_map(t_root *global)
 {
-	unsigned int		i;
+	int		i;
 
 	i = 0;
-	while (i < global->height)
+	while (i < global->column)
 	{
 		free(global->map[i]);
 		i++;
@@ -39,7 +39,7 @@ void	free_tex(t_root *global)
 		mlx_destroy_image(global->mlx, global->exit.img);
 }
 
-void	ft_exit(t_root *global)
+int	ft_exit(t_root *global)
 {
 	if (global->map_loaded == true)
 		free_map(global);
@@ -48,7 +48,7 @@ void	ft_exit(t_root *global)
 		mlx_destroy_image(global->mlx, global->display.img);
 	if (global->loaded == true)
 		mlx_destroy_window(global->mlx, global->mlx_win);
-	free(global);
+	// free(global);
 	exit(1);
 }
 

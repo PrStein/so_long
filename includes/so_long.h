@@ -71,7 +71,7 @@ void	size_window(t_root *global);
 void	init_root(t_root *global, t_error *error);
 void	find_img(t_root *global);
 void	ft_error(t_root *global, char *err_msg);
-void	ft_exit(t_root *global);
+int	ft_exit(t_root *global);
 void	free_tex(t_root *global);
 void	free_map(t_root *global);
 void find_position(t_root *global);

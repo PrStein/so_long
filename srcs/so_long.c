@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:03:47 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/23 18:04:59 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/23 22:03:02 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static int key_print(int key, t_root *global)
 	while (global->map[i])
 		printf("-->%s\n", global->map[i++]);
 	printf("---------------\n");
+	printf("collectible = %d\n", global->collectible.n);
+	printf("---------------\n");
 	return (0);
 }
 
@@ -38,7 +40,8 @@ void	manage_mlx(t_root *global, t_error *error)
 		* global->size, global->height * global->size, "so_long");
 	find_img(global);
 	mlx_key_hook(global->mlx_win, key_print, global);
-	// mlx_hook(global->win, 53, 1L << 0, exit_window, g);
+	mlx_loop_hook(g->window.mlx_ptr, first_display, g);
+	mlx_hook(global->mlx_win, 53, 1L << 17, &ft_exit, global);
 	mlx_loop(global->mlx);
 }
 
@@ -51,7 +54,7 @@ int	main(int ac, char **av)
 	{
 		global.map = check_map(av, &global, &error);
 		manage_mlx(&global, &error);
-		ft_free(global.map);
+		// ft_free(global.map);
 	}
 	if (ac != 2)
 		ft_error_arg(ac);
