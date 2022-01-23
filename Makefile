@@ -14,6 +14,8 @@ SRCS =	./srcs/so_long.c\
 		./srcs/error_utils.c\
 		./srcs/utils.c\
 		./srcs/exit.c\
+		./srcs/position.c\
+		./srcs/move.c\
 
 SRCS_O    = ${SRCS:.c=.o}
 

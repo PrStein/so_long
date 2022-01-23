@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 19:49:14 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/11 20:27:49 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/23 16:28:25 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	reverse_comp(char *s1, char *s2)
 	return (0);
 }
 
-char	**isafile(char **av, t_error *error)
+char	**isafile(char **av, t_error *error, t_root *global)
 {
 	int		fd;
 	char	*line;
@@ -54,13 +54,12 @@ char	**isafile(char **av, t_error *error)
 	free(str);
 	close(fd);
 	error->size = ft_strlen(split[0]);
-	check_zero_one(split, error);
+	check_zero_one(split, error, global);
 	return (split);
 }
 
-char	**check_map(char **av)
+char	**check_map(char **av, t_root *global, t_error *error)
 {
-	t_error	error;
 	char	**map;
 
 	map = NULL;
@@ -69,8 +68,8 @@ char	**check_map(char **av)
 		ft_putstr_fd("Error map", 2);
 		exit(1);
 	}
-	ft_init_error(&error);
-	map = isafile(av, &error);
-	error_message_map(&error, map);
+	ft_init_error(error, global);
+	map = isafile(av, error, global);
+	error_message_map(error, map);
 	return (map);
 }

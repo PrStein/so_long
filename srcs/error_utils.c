@@ -6,13 +6,13 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 18:25:27 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/11 20:30:13 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/21 23:30:27 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	check_f_n_l_line(char *line, t_error *error)
+void	check_f_n_l_line(char *line, t_error *error, t_root *global)
 {
 	int	i;
 
@@ -25,6 +25,7 @@ void	check_f_n_l_line(char *line, t_error *error)
 	}
 	if (ft_strlen(line) != error->size)
 		error->square++;
+	global->row = i;
 }
 
 void	check_inner_line(char *line, t_error *error)
@@ -80,17 +81,18 @@ void	error_message_map(t_error *error, char **map)
 	}
 }
 
-void	check_zero_one(char **split, t_error *error)
+void	check_zero_one(char **split, t_error *error, t_root *global)
 {
 	int	i;
 
 	i = 0;
-	check_f_n_l_line(split[0], error);
+	check_f_n_l_line(split[0], error, global);
 	i++;
 	while (split[i + 1])
 	{
 		check_inner_line(split[i], error);
 		i++;
 	}
-	check_f_n_l_line(split[i], error);
+	check_f_n_l_line(split[i], error, global);
+	global->column = i + 1;
 }

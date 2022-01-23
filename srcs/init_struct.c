@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 18:06:33 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/15 16:13:21 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/23 16:27:31 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ void	size_window(t_root *global)
 	global->height = i;
 }
 
-void	init_root(t_root *global)
+void	init_root(t_root *global, t_error *error)
 {
 	size_window(global);
 	global->size = 64;
+	global->collectible.n = error->collectible;
 }
 
-void	ft_init_error(t_error *error)
+void	ft_init_error(t_error *error, t_root *global)
 {
 	error->closed = 0;
 	error->square = 0;
@@ -42,6 +43,8 @@ void	ft_init_error(t_error *error)
 	error->collectible = 0;
 	error->ex = 0;
 	error->full = 0;
+	global->row = 0;
+	global->column = 0;
 }
 
 void	ft_free(char **map)

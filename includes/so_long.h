@@ -32,6 +32,7 @@ typedef struct s_img {
 	int		line_l;
 	int		endian;
 	int		loaded;
+	int		n;
 }				t_img;
 
 typedef struct s_root{
@@ -49,28 +50,38 @@ typedef struct s_root{
 	t_img exit;
 	t_img path;
 	t_img wall;
+	int row;
+	int column;
+	int x;
+	int y;
 }			t_root;
 
 int	main(int ac, char **av);
 int	reverse_comp(char *s1, char *s2);
 
-void	check_f_n_l_line(char *line, t_error *error);
+void	check_f_n_l_line(char *line, t_error *error, t_root *global);
 void	ft_error_arg(int ac);
-void	ft_init_error(t_error *error);
+void	ft_init_error(t_error *error, t_root *global);
 void	check_inner_line(char *line, t_error *error);
 void	error_message_map(t_error *error, char **map);
-void	check_zero_one(char **split, t_error *error);
+void	check_zero_one(char **split, t_error *error, t_root *global);
 void	ft_free(char **map);
-void	manage_mlx(t_root *global);
+void	manage_mlx(t_root *global, t_error *error);
 void	size_window(t_root *global);
-void	init_root(t_root *global);
+void	init_root(t_root *global, t_error *error);
 void	find_img(t_root *global);
 void	ft_error(t_root *global, char *err_msg);
 void	ft_exit(t_root *global);
 void	free_tex(t_root *global);
 void	free_map(t_root *global);
+void find_position(t_root *global);
+void	choose_move(int key, t_root *global);
+void	move_up(t_root *global);
+void	move_left(t_root *global);
+void	move_down(t_root *global);
+void	move_right(t_root *global);
 
-char	**check_map(char **av);
-char	**isafile(char **av, t_error *error);
+char	**check_map(char **av, t_root *global, t_error *error);
+char	**isafile(char **av, t_error *error, t_root *global);
 
 #endif
