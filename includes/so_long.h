@@ -35,6 +35,20 @@ typedef struct s_img {
 	int		n;
 }				t_img;
 
+typedef struct s_draw {
+	unsigned int	x_t;
+	unsigned int	y_t;
+	unsigned int	x_s;
+	unsigned int	y_s;
+}				t_draw;
+
+typedef struct s_pos {
+	int	x;
+	int	y;
+	int	left;
+	int	right;
+}				t_pos;
+
 typedef struct s_root{
 	t_bool loaded;
 	t_bool map_loaded;
@@ -42,7 +56,7 @@ typedef struct s_root{
 	void *mlx;
 	void *mlx_win;
 	char **map;
-	int width;
+	unsigned int width;
 	unsigned int height;
 	t_img display;
 	t_img player;
@@ -50,14 +64,20 @@ typedef struct s_root{
 	t_img exit;
 	t_img path;
 	t_img wall;
+	t_draw draw;
+	t_pos pos;
 	int row;
 	int column;
 	int x;
 	int y;
+	int x_pxl;
+	int y_pxl;
 }			t_root;
 
 int	main(int ac, char **av);
 int	reverse_comp(char *s1, char *s2);
+int	ft_exit(t_root *global);
+int	draw(t_root *global);
 
 void	check_f_n_l_line(char *line, t_error *error, t_root *global);
 void	ft_error_arg(int ac);
@@ -71,15 +91,20 @@ void	size_window(t_root *global);
 void	init_root(t_root *global, t_error *error);
 void	find_img(t_root *global);
 void	ft_error(t_root *global, char *err_msg);
-int	ft_exit(t_root *global);
 void	free_tex(t_root *global);
 void	free_map(t_root *global);
-void find_position(t_root *global);
+void	find_position(t_root *global);
 void	choose_move(int key, t_root *global);
 void	move_up(t_root *global);
 void	move_left(t_root *global);
 void	move_down(t_root *global);
 void	move_right(t_root *global);
+void	draw_tiles(t_root *global, char tile);
+void	draw_sprites(t_root *global, char tile);
+void	draw_player(t_root *global);
+void	draw_tile(t_root *d, t_img *tile);
+void	draw_sprite(t_root *d, t_img *tile);
+void	draw_player_sprite(t_root *d, t_img *tile);
 
 char	**check_map(char **av, t_root *global, t_error *error);
 char	**isafile(char **av, t_error *error, t_root *global);

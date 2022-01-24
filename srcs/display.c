@@ -6,30 +6,79 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 23:45:37 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/23 17:01:52 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/24 22:57:30 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	first_display(t_global *g)
+void	draw_player(t_root *global)
 {
-	int		j;
-	int		i;
+	global->draw.y_s = 0;
+	while (global->draw.y_s < 64)
+	{
+		global->draw.x_s = 0;
+		while (global->draw.x_s < 64)
+		{
+			draw_player_sprite(global, &global->player);
+			global->draw.x_s++;
+		}
+		global->draw.y_s++;
+	}
+}
 
-	i = -1;
-	while (++i < global->row)
+void	draw_sprites(t_root *global, char tile)
+{
+	global->draw.y_s = 0;
+	while (global->draw.y_s < 64)
 	{
-		j = -1;
-		while (++j < g->column)
-			select_texture(g, i, j);
+		global->draw.x_s = 0;
+		while (global->draw.x_s < 64)
+		{
+			if (tile == 'C')
+				draw_sprite(global, &global->collectible);
+			else if (tile == 'E')
+				draw_sprite(global, &global->exit);
+			global->draw.x_s++;
+		}
+		global->draw.y_s++;
 	}
-	mlx_put_image_to_window(global->mlx, global->win,
-		g->window.img.img, 0, 0);
-	if (g->end == 1)
+}
+
+void	draw_tiles(t_root *global, char tile)
+{
+	global->draw.y_s = 0;
+	while (global->draw.y_s < 64)
 	{
-		ft_putstr("Good Game !\n");
-		close_cub(g);
+		global->draw.x_s = 0;
+		while (global->draw.x_s < 64)
+		{
+			if (tile == '1')
+				draw_tile(global, &global->wall);
+			else
+				draw_tile(global, &global->path);
+			global->draw.x_s++;
+		}
+		global->draw.y_s++;
 	}
+}
+
+int	draw(t_root *global)
+{
+	global->draw.y_t = 0;
+	while (global->draw.y_t < global->height)
+	{
+		global->draw.x_t = 0;
+		while (global->draw.x_t < global->width)
+		{
+			draw_tiles(global, global->map[global->draw.y_t][global->draw.x_t]);
+			draw_sprites(global, global->map[global->draw.y_t][global->draw.x_t]);
+			global->draw.x_t++;
+		}
+		global->draw.y_t++;
+	}
+	draw_player(global);
+	mlx_put_image_to_window(global->mlx, global->mlx_win,
+		global->display.img, 0, 0);
 	return (0);
 }

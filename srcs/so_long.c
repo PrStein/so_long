@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:03:47 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/23 22:03:02 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/24 23:13:33 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	manage_mlx(t_root *global, t_error *error)
 	global->mlx_win = mlx_new_window(global->mlx, global->width
 		* global->size, global->height * global->size, "so_long");
 	find_img(global);
+	mlx_hook(global->mlx_win, 17, 0, ft_exit, global);
 	mlx_key_hook(global->mlx_win, key_print, global);
-	mlx_loop_hook(g->window.mlx_ptr, first_display, g);
-	mlx_hook(global->mlx_win, 53, 1L << 17, &ft_exit, global);
+	mlx_loop_hook(global->mlx, draw, global);
 	mlx_loop(global->mlx);
 }
 
