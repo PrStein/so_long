@@ -16,6 +16,8 @@ SRCS =	./srcs/so_long.c\
 		./srcs/exit.c\
 		./srcs/position.c\
 		./srcs/move.c\
+		./srcs/display.c\
+		./srcs/print_textures.c\
 
 SRCS_O    = ${SRCS:.c=.o}
 
