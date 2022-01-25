@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 15:45:45 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/23 21:51:25 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/25 01:10:13 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	move_up(t_root *global)
 		}
 		global->map[global->x - 1][global->y] = 'P';
 		global->map[global->x][global->y] = '0';
+		global->x--;
 	}
 	else
 		printf("no move possible\n");
@@ -71,6 +72,7 @@ void	move_left(t_root *global)
 		}
 		global->map[global->x][global->y - 1] = 'P';
 		global->map[global->x][global->y] = '0';
+		global->y--;
 	}
 	else
 		printf("no move possible\n");
@@ -94,6 +96,7 @@ void	move_down(t_root *global)
 		}
 		global->map[global->x + 1][global->y] = 'P';
 		global->map[global->x][global->y] = '0';
+		global->x++;
 	}
 	else
 		printf("no move possible\n");
@@ -117,6 +120,7 @@ void	move_right(t_root *global)
 		}
 		global->map[global->x][global->y + 1] = 'P';
 		global->map[global->x][global->y] = '0';
+		global->y++;
 	}
 	else
 		printf("no move possible\n");

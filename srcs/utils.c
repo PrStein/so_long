@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 23:09:28 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/15 16:32:06 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/25 00:24:09 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	get_tex(t_root *global, t_img *tex, char *path)
 
 void	find_img(t_root *global)
 {
-	global->display.img = mlx_new_image(global->mlx, global->width,
-			global->height);
+	global->display.img = mlx_new_image(global->mlx, global->width * 64,
+			global->height * 64);
 	global->display.addr = mlx_get_data_addr(global->display.img,
 			&global->display.bpp, &global->display.line_l, &global->display.endian);
 	global->display.loaded = true;
