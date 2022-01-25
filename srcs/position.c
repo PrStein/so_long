@@ -6,16 +6,16 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 15:55:21 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/23 17:04:39 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/25 15:21:46 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void find_position(t_root *global)
+void	find_position(t_root *global)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	while (global->map[x])

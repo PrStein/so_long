@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 18:25:27 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/21 23:30:27 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/25 15:28:23 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	check_inner_line(char *line, t_error *error)
 		else if (line[i] == 'C')
 			error->collectible++;
 		else if (line[i] != 'C' && line[i] != 'P'
-				&& line[i] != 'E' && line[i] != '0' && line[i] != '1')
+			&& line[i] != 'E' && line[i] != '0' && line[i] != '1')
 			error->full++;
 		i++;
 	}
@@ -73,8 +73,8 @@ void	error_message_map(t_error *error, char **map)
 	if (error->full != 0)
 		ft_putstr_fd("Don't mess with the map boy\n", 2);
 	if (error->closed != 0 || error->square != 0
-			|| error->ex <= 0 || error->collectible <= 0
-			|| error->player != 1 || error->full != 0)
+		|| error->ex <= 0 || error->collectible <= 0
+		|| error->player != 1 || error->full != 0)
 	{
 		ft_free(map);
 		exit(1);

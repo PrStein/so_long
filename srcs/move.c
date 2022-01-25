@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 15:45:45 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/25 01:10:13 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/25 15:22:51 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ void	choose_move(int key, t_root *global)
 		move_right(global);
 	if (key == 53)
 		ft_exit(global);
-
-	// else
-	// 	printf("a suivre\n");
 }
 
 void	move_up(t_root *global)

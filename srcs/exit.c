@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:34:40 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/23 21:57:40 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/25 15:26:38 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	ft_exit(t_root *global)
 		mlx_destroy_image(global->mlx, global->display.img);
 	if (global->loaded == true)
 		mlx_destroy_window(global->mlx, global->mlx_win);
-	// free(global);
 	exit(1);
 }
 

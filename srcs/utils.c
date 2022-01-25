@@ -12,6 +12,12 @@
 
 #include "../includes/so_long.h"
 
+void	ft_free_str(char *str)
+{
+	free(str);
+	str = NULL;
+}
+
 void	get_tex(t_root *global, t_img *tex, char *path)
 {
 	tex->img = mlx_xpm_file_to_image(global->mlx, path,

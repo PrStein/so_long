@@ -6,13 +6,13 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 23:45:37 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/25 00:58:21 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/25 15:08:27 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	draw_player(t_root *global)
+void	draw_player(t_root *global, char tile)
 {
 	global->draw.y_s = 0;
 	while (global->draw.y_s < 64)
@@ -20,7 +20,8 @@ void	draw_player(t_root *global)
 		global->draw.x_s = 0;
 		while (global->draw.x_s < 64)
 		{
-			draw_player_sprite(global, &global->player);
+			if (tile == 'P')
+				draw_player_sprite(global, &global->player);
 			global->draw.x_s++;
 		}
 		global->draw.y_s++;
@@ -73,11 +74,11 @@ int	draw(t_root *global)
 		{
 			draw_tiles(global, global->map[global->draw.y_t][global->draw.x_t]);
 			draw_sprites(global, global->map[global->draw.y_t][global->draw.x_t]);
+			draw_player(global, global->map[global->draw.y_t][global->draw.x_t]);
 			global->draw.x_t++;
 		}
 		global->draw.y_t++;
 	}
-	draw_player(global);
 	mlx_put_image_to_window(global->mlx, global->mlx_win,
 		global->display.img, 0, 0);
 	return (0);

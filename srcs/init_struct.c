@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 18:06:33 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/23 23:14:00 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/25 15:25:21 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	size_window(t_root *global)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
-	while(global->map[0][j])
+	while (global->map[0][j])
 		j++;
 	global->width = j;
 	while (global->map[i])
