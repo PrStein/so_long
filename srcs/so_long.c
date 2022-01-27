@@ -6,11 +6,24 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:03:47 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/25 15:20:23 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/25 19:58:15 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+void	print_move(t_root *global)
+{
+	if (global->move > 0)
+	{
+		ft_putstr("You moved ");
+		ft_putnbr_fd(global->move, 1);
+		if (global->move == 1)
+			ft_putstr(" time\n");
+		else
+			ft_putstr(" times\n");
+	}
+}
 
 void	ft_error_arg(int ac)
 {
@@ -23,12 +36,6 @@ void	ft_error_arg(int ac)
 static int	key_print(int key, t_root *global)
 {
 	choose_move(key, global);
-	int i = 0;
-	while (global->map[i])
-		printf("-->%s\n", global->map[i++]);
-	printf("---------------\n");
-	printf("collectible = %d\n", global->collectible.n);
-	printf("---------------\n");
 	return (0);
 }
 

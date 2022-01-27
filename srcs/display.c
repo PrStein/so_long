@@ -6,13 +6,13 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 23:45:37 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/25 15:08:27 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/25 19:35:53 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	draw_player(t_root *global, char tile)
+void	draw_player(t_root *global)
 {
 	global->draw.y_s = 0;
 	while (global->draw.y_s < 64)
@@ -20,8 +20,7 @@ void	draw_player(t_root *global, char tile)
 		global->draw.x_s = 0;
 		while (global->draw.x_s < 64)
 		{
-			if (tile == 'P')
-				draw_player_sprite(global, &global->player);
+			draw_player_sprite(global, &global->player);
 			global->draw.x_s++;
 		}
 		global->draw.y_s++;
@@ -40,6 +39,8 @@ void	draw_sprites(t_root *global, char tile)
 				draw_sprite(global, &global->collectible);
 			else if (tile == 'E')
 				draw_sprite(global, &global->exit);
+			if (tile == 'P')
+				draw_sprite(global, &global->player);
 			global->draw.x_s++;
 		}
 		global->draw.y_s++;
@@ -74,7 +75,7 @@ int	draw(t_root *global)
 		{
 			draw_tiles(global, global->map[global->draw.y_t][global->draw.x_t]);
 			draw_sprites(global, global->map[global->draw.y_t][global->draw.x_t]);
-			draw_player(global, global->map[global->draw.y_t][global->draw.x_t]);
+			// draw_player(global, global->map[global->draw.y_t][global->draw.x_t]);
 			global->draw.x_t++;
 		}
 		global->draw.y_t++;

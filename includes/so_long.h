@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sadjigui <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:58:07 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/25 15:07:04 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/25 19:55:14 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_root{
 	int				y;
 	int				x_pxl;
 	int				y_pxl;
+	int				move;
 }					t_root;
 
 int		main(int ac, char **av);
@@ -113,11 +114,12 @@ void	move_down(t_root *global);
 void	move_right(t_root *global);
 void	draw_tiles(t_root *global, char tile);
 void	draw_sprites(t_root *global, char tile);
-void	draw_player(t_root *global, char tile);
+void	draw_player(t_root *global);
 void	draw_tile(t_root *d, t_img *tile);
 void	draw_sprite(t_root *d, t_img *tile);
 void	draw_player_sprite(t_root *d, t_img *tile);
 void	ft_free_str(char *str);
+void	print_move(t_root *global);
 
 char	**check_map(char **av, t_root *global, t_error *error);
 char	**isafile(char **av, t_error *error, t_root *global);

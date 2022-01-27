@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/23 15:45:45 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/25 15:22:51 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/25 19:56:25 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	move_up(t_root *global)
 		{
 			if (global->collectible.n == 0)
 			{
-				ft_putstr("Bien joué\n");
+				ft_putstr("Well played\n");
 				ft_exit(global);
 			}
 			else
@@ -45,10 +45,9 @@ void	move_up(t_root *global)
 		}
 		global->map[global->x - 1][global->y] = 'P';
 		global->map[global->x][global->y] = '0';
-		global->x--;
+		global->move++;
+		print_move(global);
 	}
-	else
-		printf("no move possible\n");
 }
 
 void	move_left(t_root *global)
@@ -61,7 +60,7 @@ void	move_left(t_root *global)
 		{
 			if (global->collectible.n == 0)
 			{
-				ft_putstr("Bien joué\n");
+				ft_putstr("Well played\n");
 				ft_exit(global);
 			}
 			else
@@ -69,10 +68,9 @@ void	move_left(t_root *global)
 		}
 		global->map[global->x][global->y - 1] = 'P';
 		global->map[global->x][global->y] = '0';
-		global->y--;
+		global->move++;
+		print_move(global);
 	}
-	else
-		printf("no move possible\n");
 }
 
 void	move_down(t_root *global)
@@ -85,7 +83,7 @@ void	move_down(t_root *global)
 		{
 			if (global->collectible.n == 0)
 			{
-				ft_putstr("Bien joué\n");
+				ft_putstr("Well played\n");
 				ft_exit(global);
 			}
 			else
@@ -93,10 +91,9 @@ void	move_down(t_root *global)
 		}
 		global->map[global->x + 1][global->y] = 'P';
 		global->map[global->x][global->y] = '0';
-		global->x++;
+		global->move++;
+		print_move(global);
 	}
-	else
-		printf("no move possible\n");
 }
 
 void	move_right(t_root *global)
@@ -109,7 +106,7 @@ void	move_right(t_root *global)
 		{
 			if (global->collectible.n == 0)
 			{
-				ft_putstr("Bien joué\n");
+				ft_putstr("Well played\n");
 				ft_exit(global);
 			}
 			else
@@ -117,8 +114,7 @@ void	move_right(t_root *global)
 		}
 		global->map[global->x][global->y + 1] = 'P';
 		global->map[global->x][global->y] = '0';
-		global->y++;
+		global->move++;
+		print_move(global);
 	}
-	else
-		printf("no move possible\n");
 }

@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 18:06:33 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/25 15:25:21 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/25 19:57:07 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	ft_init_error(t_error *error, t_root *global)
 	global->column = 0;
 	global->x_pxl = 0;
 	global->y_pxl = 0;
+	global->move = 0;
 }
 
 void	ft_free(char **map)

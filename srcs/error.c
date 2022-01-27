@@ -6,7 +6,7 @@
 /*   By: sadjigui <sadjigui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/11 19:49:14 by sadjigui          #+#    #+#             */
-/*   Updated: 2022/01/25 15:16:12 by sadjigui         ###   ########.fr       */
+/*   Updated: 2022/01/25 20:16:55 by sadjigui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ char	**isafile(char **av, t_error *error, t_root *global)
 	fd = open(av[1], O_RDONLY);
 	str = NULL;
 	tmp = NULL;
+	if (fd == - 1)
+		exit(1);
 	while ((line = get_next_line(fd)) != NULL)
 	{
 		tmp = ft_strjoin(str, line);
@@ -63,7 +65,7 @@ char	**check_map(char **av, t_root *global, t_error *error)
 	char	**map;
 
 	map = NULL;
-	if (reverse_comp(av[1], ".ber"))
+	if (reverse_comp(av[1], ".ber") || (ft_strlen(av[1]) == ft_strlen(".ber")))
 	{
 		ft_putstr_fd("Error map", 2);
 		exit(1);
